@@ -1,0 +1,93 @@
+create database Fluggesellschaft;
+use Fluggesellschaft;
+
+create table Pilot (
+PersonalNr int primary key AUTO_INCREMENT,
+Vorname varchar (50) not null,
+Nachname varchar (50) not null,
+Geburtsdatum date not null,
+Qualifikation varchar (50) not null,
+Flugstunden int not null);
+
+create table Flugzeugtyp (
+TypID int primary key AUTO_INCREMENT,
+Typbezeichnung varchar (255) not null, 
+AnzahlSitze int not null,
+MaxGeschwindigkeit int not null);
+
+create table Flugzeuge (
+FlugzeugNummer int primary key AUTO_INCREMENT,
+DatumLetzteKontrolle date not null);
+
+create table Fluggesellschaft (
+FluggesellschaftID int primary key AUTO_INCREMENT, 
+Bezeichnung varchar (255) not null);
+
+create table Hauptsitz (
+HauptSitzID int primary key AUTO_INCREMENT,
+Land varchar (100) not null,
+Ort varchar (100) not null,
+PLZ int not null,
+Straﬂe varchar (100) not null,
+HausNr int not null);
+
+create table Flug (
+FlugNr int primary key AUTO_INCREMENT,
+Abflugsdatum date not null,
+Abflugsort varchar (100) not null,
+Zielflughafen varchar (255) not null,
+Flugdauer double not null);
+
+create table Flugpassagier (
+KundenNr int primary key AUTO_INCREMENT,
+Vorname varchar (50) not null,
+Nachname varchar (50) not null,
+Geburtsdatum date not null,
+Land varchar (100) not null,
+Ort varchar (100) not null,
+PLZ int not null,
+Straﬂe varchar (100) not null,
+HausNr int not null);
+
+alter table Hauptsitz 
+add FluggesellschaftID int unique;
+
+alter table Pilot
+add FluggesellschaftID int unique;
+
+alter table Flugzeuge
+add FluggesellschaftID int unique;
+
+alter table Flugzeuge
+add TypID int unique;
+
+alter table Flugzeuge
+add PersonalNr int unique;
+
+alter table Flug
+add PersonalNr int unique;
+
+alter table Flug
+add KundenNr int unique;
+
+alter table Flugzeuge
+drop column PersonalNr;
+
+
+alter table Hauptsitz 
+add foreign key (FluggesellschaftID) references fluggesellschaft (FluggesellschaftID);
+
+alter table Pilot 
+add foreign key (FluggesellschaftID) references Fluggesellschaft (FluggesellschaftID);
+
+alter table Flugzeuge
+add foreign key (FluggesellschaftID) references Fluggesellschaft (FluggesellschaftID);
+
+alter table Flugzeuge
+add foreign key (TypID) references Flugzeugtyp (TypID);
+
+alter table Flug
+add foreign key (PersonalNr) references Pilot (PersonalNr);
+
+alter table Flug
+add foreign key (KundenNr) references Flugpassagier (KundenNr);

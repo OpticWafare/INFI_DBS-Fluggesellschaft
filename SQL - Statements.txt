@@ -74,6 +74,8 @@ alter table Flugzeuge
 drop column PersonalNr;
 
 
+
+
 alter table Hauptsitz 
 add foreign key (FluggesellschaftID) references fluggesellschaft (FluggesellschaftID);
 
@@ -91,3 +93,99 @@ add foreign key (PersonalNr) references Pilot (PersonalNr);
 
 alter table Flug
 add foreign key (KundenNr) references Flugpassagier (KundenNr);
+
+
+insert into Fluggesellschaft (FluggesellschaftID, Bezeichnung)
+values (1, 'FlyEmirates');
+
+insert into Fluggesellschaft (FluggesellschaftID, Bezeichnung)
+values (2, 'FlyNiki');
+
+insert into Fluggesellschaft (FluggesellschaftID, Bezeichnung)
+values (3, 'AustrianAirlines');
+
+insert into Fluggesellschaft (FluggesellschaftID, Bezeichnung)
+values (4, 'Eurowings');
+
+insert into Fluggesellschaft (FluggesellschaftID, Bezeichnung)
+values (5, 'Germanwings');
+
+
+insert into Pilot (PersonalNr, Vorname, Nachname, Geburtsdatum, Qualifikation, Flugstunden, FluggesellschaftID)
+values (1, 'Martin', 'Eller', '1998-12-29', 'PilotinAusbildung', 50, 1);
+
+insert into Pilot (PersonalNr, Vorname, Nachname, Geburtsdatum, Qualifikation, Flugstunden, FluggesellschaftID)
+values (2, 'Sepp', 'Maier', '1987-10-15', 'Pilot', 5000, 2);
+
+insert into Pilot (PersonalNr, Vorname, Nachname, Geburtsdatum, Qualifikation, Flugstunden, FluggesellschaftID)
+values (3, 'Rudolf', 'Rundnase', '1984-04-13', 'Pilot', 7500, 3);
+
+insert into Pilot (PersonalNr, Vorname, Nachname, Geburtsdatum, Qualifikation, Flugstunden, FluggesellschaftID)
+values (4, 'Klaus', 'Rüdiger', '1975-07-29', 'CoPilot', 10000, 4);
+
+insert into Pilot (PersonalNr, Vorname, Nachname, Geburtsdatum, Qualifikation, Flugstunden, FluggesellschaftID)
+values (5, 'Herbert', 'Lichtensteiner', '1970-03-15', 'Ausbilder', 15000, 5);
+
+
+insert into Flugzeugtyp (TypID, Typbezeichnung, AnzahlSitze, MaxGeschwindigkeit)
+values (1, 'Boing747', 400, 982);
+
+insert into Flugzeugtyp (TypID, Typbezeichnung, AnzahlSitze, MaxGeschwindigkeit)
+values (2, 'AirbusA380', 516, 1020);
+
+insert into Flugzeugtyp (TypID, Typbezeichnung, AnzahlSitze, MaxGeschwindigkeit)
+values (3, 'AirbusA350', 325, 902);
+
+insert into Flugzeugtyp (TypID, Typbezeichnung, AnzahlSitze, MaxGeschwindigkeit)
+values (4, 'Boing767', 259, 940);
+
+insert into Flugzeugtyp (TypID, Typbezeichnung, AnzahlSitze, MaxGeschwindigkeit)
+values (5, 'Boing777', 375, 950);
+
+
+insert into Flugzeuge (FlugzeugNummer, DatumLetzteKontrolle, FluggesellschaftID, TypID)
+values (1, '2018-06-01', 1, 1);
+
+insert into Flugzeuge (FlugzeugNummer, DatumLetzteKontrolle, FluggesellschaftID, TypID)
+values (2, '2018-04-01', 2, 2);
+
+insert into Flugzeuge (FlugzeugNummer, DatumLetzteKontrolle, FluggesellschaftID, TypID)
+values (3, '2018-02-01', 3, 3);
+
+insert into Flugzeuge (FlugzeugNummer, DatumLetzteKontrolle, FluggesellschaftID, TypID)
+values (4, '2018-03-01', 4, 4);
+
+insert into Flugzeuge (FlugzeugNummer, DatumLetzteKontrolle, FluggesellschaftID, TypID)
+values (5, '2018-05-01', 5, 5);
+
+
+insert into Flugpassagier (KundenNr, Vorname, Nachname, Geburtsdatum, Land, Ort, PLZ, Straße, HausNr)
+values (1, 'Sebastian', 'Helge', '1965-10-05', 'Österreich', 'Innsbruck', 6020, 'MariaTheresienStraße', 5);  
+
+insert into Flugpassagier (KundenNr, Vorname, Nachname, Geburtsdatum, Land, Ort, PLZ, Straße, HausNr)
+values (2, 'Benno', 'Jägert', '1998-07-19', 'Österreich', 'MatreiAmBrenner', 6143, 'Brennerstraße', 67);  
+
+insert into Flugpassagier (KundenNr, Vorname, Nachname, Geburtsdatum, Land, Ort, PLZ, Straße, HausNr)
+values (3, 'Elisabeth', 'Gaggl', '1969-07-31', 'Österreich', 'MatreiAmBrenner', 6143, 'SportPlatzSiedlung', 36);  
+
+insert into Flugpassagier (KundenNr, Vorname, Nachname, Geburtsdatum, Land, Ort, PLZ, Straße, HausNr)
+values (4, 'Jusuf', 'Emir', '1995-8-06', 'Österreich', 'Innsbruck', 6020, 'OlympischesDorf', 59);  
+
+insert into Flugpassagier (KundenNr, Vorname, Nachname, Geburtsdatum, Land, Ort, PLZ, Straße, HausNr)
+values (5, 'Herman', 'Lachnie', '1973-11-16', 'Österreich', 'Innsbruck', 6020, 'Pradl', 20);  
+
+
+insert into Flug (FlugNr, Abflugsdatum, Abflugsort, Zielflughafen, Flugdauer, PersonalNr, KundenNr)
+values (1, '2018-02-13', 'Innsbruck', 'München', 1.5, 1, 1);
+
+insert into Flug (FlugNr, Abflugsdatum, Abflugsort, Zielflughafen, Flugdauer, PersonalNr, KundenNr)
+values (2, '2018-01-25', 'Innsbruck', 'Gatwick', 2.0, 2, 2);
+
+insert into Flug (FlugNr, Abflugsdatum, Abflugsort, Zielflughafen, Flugdauer, PersonalNr, KundenNr)
+values (3, '2018-03-10', 'Innsbruck', 'Köln', 4.5, 3, 3);
+
+insert into Flug (FlugNr, Abflugsdatum, Abflugsort, Zielflughafen, Flugdauer, PersonalNr, KundenNr)
+values (4, '2018-02-13', 'München', 'NewYork', 12.0, 4, 4);
+
+insert into Flug (FlugNr, Abflugsdatum, Abflugsort, Zielflughafen, Flugdauer, PersonalNr, KundenNr)
+values (5, '2018-02-13', 'München', 'SüdAfrika', 15, 5, 5);
